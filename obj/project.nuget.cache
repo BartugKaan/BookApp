@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "jdMIiYGKG7ebRuCH/6W8IXbmh/IR+7MKDmMxWjzd3mEkC78G0NWiPW1PlDT5OUCXbBQxla58SmKeBuYmqiH9Bw==",
+  "success": true,
+  "projectFilePath": "/Users/bartug/Desktop/development/dotnetProjects/BookApp/BookApp.csproj",
+  "expectedPackageFiles": [
+    "/Users/bartug/.nuget/packages/microsoft.netcore.app.ref/7.0.18/microsoft.netcore.app.ref.7.0.18.nupkg.sha512",
+    "/Users/bartug/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.18/microsoft.aspnetcore.app.ref.7.0.18.nupkg.sha512",
+    "/Users/bartug/.nuget/packages/microsoft.netcore.app.host.osx-arm64/7.0.18/microsoft.netcore.app.host.osx-arm64.7.0.18.nupkg.sha512"
+  ],
+  "logs": []
+}
