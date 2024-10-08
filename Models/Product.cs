@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace BooksApp.Models
+namespace BookApp.Models
 {
 
   public class Product

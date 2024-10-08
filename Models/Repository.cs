@@ -1,4 +1,4 @@
-namespace BooksApp.Models
+namespace BookApp.Models
 {
 
   public class Repository

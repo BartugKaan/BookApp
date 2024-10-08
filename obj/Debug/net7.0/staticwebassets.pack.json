@@ -13,6 +13,18 @@
       "PackagePath": "staticwebassets/favicon.ico"
     },
     {
+      "Id": "/Users/bartug/Desktop/development/dotnetProjects/BookApp/wwwroot/img/1.png",
+      "PackagePath": "staticwebassets/img/1.png"
+    },
+    {
+      "Id": "/Users/bartug/Desktop/development/dotnetProjects/BookApp/wwwroot/img/2.png",
+      "PackagePath": "staticwebassets/img/2.png"
+    },
+    {
+      "Id": "/Users/bartug/Desktop/development/dotnetProjects/BookApp/wwwroot/img/3.png",
+      "PackagePath": "staticwebassets/img/3.png"
+    },
+    {
       "Id": "/Users/bartug/Desktop/development/dotnetProjects/BookApp/wwwroot/js/site.js",
       "PackagePath": "staticwebassets/js/site.js"
     },

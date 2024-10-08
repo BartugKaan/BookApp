@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using BooksApp.Models;
+using BookApp.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace BooksApp.Controllers;
+namespace BookApp.Controllers;
 
 public class HomeController : Controller
 {
