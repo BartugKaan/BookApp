@@ -1,31 +1,64 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using BookApp.Models;
+using BooksApp.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace BookApp.Controllers;
+namespace BooksApp.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController()
     {
-        _logger = logger;
+
     }
 
-    public IActionResult Index()
+    public IActionResult Index(string searchString, string category)
     {
+        var products = Repository.Products;
+
+        if (!string.IsNullOrEmpty(searchString))
+        {
+            ViewBag.SearchString = searchString;
+            products = products.Where(p => p.Name!.ToLower().Contains(searchString)).ToList();
+        }
+
+        if (!string.IsNullOrEmpty(category) && category != "0")
+        {
+            products = products.Where(p => p.CategoryId == int.Parse(category)).ToList();
+        }
+
+        // ViewBag.Categories = new SelectList(Repository.Categories, "CategoryId","Name",category);
+
+        var model = new ProductViewModel
+        {
+            Products = products,
+            Categories = Repository.Categories,
+            SelectedCategory = category
+        };
+        return View(model);
+    }
+
+    [HttpGet]
+    public IActionResult Create()
+    {
+        ViewBag.Categories = new SelectList(Repository.Categories, "CategoryId", "Name");
         return View();
     }
 
-    public IActionResult Privacy()
+    [HttpPost]
+    public IActionResult Create(Product model)
     {
-        return View();
+        if (ModelState.IsValid)
+        {
+            model.ProductId = Repository.Products.Count + 1;
+            Repository.CreateProduct(model);
+            return RedirectToAction("Index");
+        }
+
+        ViewBag.Categories = new SelectList(Repository.Categories, "CategoryId", "Name");
+        return View(model);
+
     }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    }
 }
