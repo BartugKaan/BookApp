@@ -3,7 +3,7 @@
     ViewData["Title"] = "Privacy Policy";
 }
 
-<form asp-controller="Home" asp-action="Create" method="post">
+<form asp-controller="Home" asp-action="Create" method="post" enctype="multipart/form-data">
     <div asp-validation-summary="All"></div>
     <div class="mb-3">
         <label asp-for="Name" class="form-label"></label>
@@ -15,10 +15,8 @@
         <input asp-for="Pages" class="form-control">
         <span asp-validation-for="Pages"></span>
     </div>
-    <div class="mb-3">
-        <label asp-for="Image" class="form-label"></label>
-        <input asp-for="Image" class="form-control">
-        <span asp-validation-for="Image"></span>
+    <div class="input-gorup mb-3">
+        <input type="file" name="imageFile" id="imageFie" class="form-control">
     </div>
     <div class="mb-3">
         <label asp-for="CategoryId" class="form-label"></label>

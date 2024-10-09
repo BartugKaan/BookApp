@@ -47,8 +47,40 @@ public class HomeController : Controller
     }
 
     [HttpPost]
-    public IActionResult Create(Product model)
+    public async Task<IActionResult> Create(Product model, IFormFile imageFile)
     {
+        var allowedExtensions = new[] { ".jpg", ".jpeg", ".png" };
+
+        if (imageFile != null)
+        {
+            var extension = Path.GetExtension(imageFile.FileName).ToLowerInvariant();
+            if (!allowedExtensions.Contains(extension))
+            {
+                ModelState.AddModelError("", "Geçerli bir resim türü seçiniz.");
+            }
+            else
+            {
+                var randomFileName = string.Format($"{Guid.NewGuid().ToString()}{extension}");
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img", randomFileName);
+
+                try
+                {
+                    using (var stream = new FileStream(path, FileMode.Create))
+                    {
+                        await imageFile.CopyToAsync(stream);
+                    }
+                    model.Image = randomFileName;
+                }
+                catch
+                {
+                    ModelState.AddModelError("", "Dosya yüklenirken bir hata oluştu.");
+                }
+            }
+        }
+        else
+        {
+            ModelState.AddModelError("", "Lütfen bir resim seçiniz.");
+        }
         if (ModelState.IsValid)
         {
             model.ProductId = Repository.Products.Count + 1;
