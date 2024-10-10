@@ -25,10 +25,6 @@
       "PackagePath": "staticwebassets/img/3.png"
     },
     {
-      "Id": "/Users/bartug/Desktop/development/dotnetProjects/BookApp/wwwroot/img/59a16e0b-60ab-45bd-881b-86d0fb930f1f.png",
-      "PackagePath": "staticwebassets/img/59a16e0b-60ab-45bd-881b-86d0fb930f1f.png"
-    },
-    {
       "Id": "/Users/bartug/Desktop/development/dotnetProjects/BookApp/wwwroot/js/site.js",
       "PackagePath": "staticwebassets/js/site.js"
     },
