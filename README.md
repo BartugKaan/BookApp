@@ -15,6 +15,20 @@ In the admin management section, the admin can perform CRUD (Create, Read, Updat
 - <b>Asp.Net Core</b> : It formed the basic framework of the application.
 - <b>Html - Css - Bootstrap 5 </b> : It provided a more modern and simplified development in the View sections of the application. Additionally, it ensured a responsive design for users
 
+## Usage
+
+### Prerequisites
+
+- <b>.Net Core (version 7.0 or higher)</b>
+
+### Setting up the Project
+
+Open your terminal or command prompt, navigate to the desired directory, and run: `git clone https://github.com/BartugKaan/BookApp`
+
+### Run the Application
+
+Use the following command to build and run the application: `dotnet run`
+
 ## Features That Can Be Added
 
 - The application currently operates using an in-memory repository. To transition to a more modern management system, databases like SQLite or MSSQL can be utilized.
