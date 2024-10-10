@@ -60,6 +60,10 @@ public class HomeController : Controller
             }
             else
             {
+                if (imageFile.Length > 100 * 1024 * 1024)
+                {
+                    ModelState.AddModelError("", "Dosya boyutu 100 MB'dan büyük olamaz!");
+                }
                 var randomFileName = string.Format($"{Guid.NewGuid().ToString()}{extension}");
                 var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img", randomFileName);
                 try
@@ -128,6 +132,10 @@ public class HomeController : Controller
             }
             else
             {
+                if (imageFile.Length > 100 * 1024 * 1024)
+                {
+                    ModelState.AddModelError("", "Dosya boyutu 100 MB'dan büyük olamaz!");
+                }
                 var randomFileName = string.Format($"{Guid.NewGuid().ToString()}{extension}");
                 var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img", randomFileName);
                 try
