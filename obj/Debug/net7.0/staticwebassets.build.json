@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "JbZ2hwua0ua0d/AgqjVTr/YSq0VH0ZkVSDsOloI2BMQ=",
+  "Hash": "rY8E7u7LjUI/wUKzFuMZXPbXyTfZr5RfzQSWKCL9zp8=",
   "Source": "BookApp",
   "BasePath": "_content/BookApp",
   "Mode": "Default",
@@ -148,6 +148,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/img/3.png"
+    },
+    {
+      "Identity": "/Users/bartug/Desktop/development/dotnetProjects/BookApp/wwwroot/img/59a16e0b-60ab-45bd-881b-86d0fb930f1f.png",
+      "SourceId": "BookApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/bartug/Desktop/development/dotnetProjects/BookApp/wwwroot/",
+      "BasePath": "_content/BookApp",
+      "RelativePath": "img/59a16e0b-60ab-45bd-881b-86d0fb930f1f.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/img/59a16e0b-60ab-45bd-881b-86d0fb930f1f.png"
     },
     {
       "Identity": "/Users/bartug/Desktop/development/dotnetProjects/BookApp/wwwroot/js/site.js",
