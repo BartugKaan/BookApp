@@ -3,34 +3,37 @@
     ViewData["Title"] = "Home Page";
 }
 
-    <div class="card card-body my-3">
-        <form asp-action="Index" method="get">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-11">
-                        <select name="category" class="form-select" 
+<div class="card card-body my-3">
+    <form asp-action="Index" method="get">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-11">
+                    <select name="category" class="form-select" 
                         asp-items="@(new SelectList(Model.Categories, "CategoryId","Name",Model.SelectedCategory))">
-                            <option value="0">Hepsi</option>
-                        </select>
-                    </div>
-                    <div class="col-md-1">
-                        <button class="btn btn-secondary" type="submit">Filtrele</button>
-                    </div>
+                        <option value="0">Hepsi</option>
+                    </select>
+                </div>
+                <div class="col-md-1">
+                    <button class="btn btn-secondary" type="submit">Filtrele</button>
                 </div>
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
+</div>
 
 <div class="container text-center">
-    <div class="row">
-        @foreach(var prd in @Model.Products){
-            if(prd.IsActive == true){
-                <div class="col">
-                    <div class="card" style="width: 300px; max-height: 500px;">
-                        <img src="~/img/@prd.Image" class="card-img-top" style="height: 400px;">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach(var prd in @Model.Products)
+        {
+            if(prd.IsActive == true)
+            {
+                <div class="col mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="~/img/@prd.Image" class="card-img-top" style="object-fit: cover; height: 300px;">
                         <div class="card-body">
                             <h5 class="card-title">@prd.Name</h5>
-                            <p class="card-text">@prd.Pages</p>
+                            <p class="card-text text-muted">Sayfa: @prd.Pages</p>
+                            <a href="#" class="btn btn-primary w-100">Satın Al</a>
                         </div>
                     </div>
                 </div>
@@ -39,33 +42,3 @@
     </div>
 </div>
 
-
-
-@* <table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th style="width: 100px;">@Html.DisplayNameFor(m => m.Products[0].ProductId)</th>
-            <th style="width: 100px;">@Html.DisplayNameFor(m => m.Products[0].Image)</th>
-            <th>@Html.DisplayNameFor(m => m.Products[0].Name)</th>
-            <th>@Html.DisplayNameFor(m => m.Products[0].Pages)</th>
-            
-            <th style="width: 130px;">Settings</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(var prd in @Model.Products){
-            <tr>
-                <td>@prd.ProductId</td>
-                <td>
-                    <img src="~/img/@prd.Image" class="img-fluid" alt="">
-                </td>
-                <td>@prd.Name</td>
-                <td>@prd.Pages</td>
-                <td>
-                    <a asp-controller="Home" asp-action="Edit" asp-route-id="@prd.ProductId" class="btn btn-sm btn-warning">Edit</a>
-                    <a asp-controller="Home" asp-action="Delete" asp-route-id="@prd.ProductId" class="btn btn-sm btn-danger">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table> *@
