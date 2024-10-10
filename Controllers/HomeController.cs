@@ -49,12 +49,12 @@ public class HomeController : Controller
     [HttpPost]
     public async Task<IActionResult> Create(Product model, IFormFile imageFile)
     {
-        var allowedExtensions = new[] { ".jpg", ".jpeg", ".png" };
+        var allowenExtensions = new[] { ".jpg", ".png", ".jpeg" };
 
         if (imageFile != null)
         {
             var extension = Path.GetExtension(imageFile.FileName).ToLowerInvariant();
-            if (!allowedExtensions.Contains(extension))
+            if (!allowenExtensions.Contains(extension))
             {
                 ModelState.AddModelError("", "Geçerli bir resim türü seçiniz.");
             }
@@ -62,7 +62,6 @@ public class HomeController : Controller
             {
                 var randomFileName = string.Format($"{Guid.NewGuid().ToString()}{extension}");
                 var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img", randomFileName);
-
                 try
                 {
                     using (var stream = new FileStream(path, FileMode.Create))
@@ -73,13 +72,13 @@ public class HomeController : Controller
                 }
                 catch
                 {
-                    ModelState.AddModelError("", "Dosya yüklenirken bir hata oluştu.");
+                    ModelState.AddModelError("", "Dosya yüklenirken bir hata oluştu!");
                 }
             }
         }
         else
         {
-            ModelState.AddModelError("", "Lütfen bir resim seçiniz.");
+            ModelState.AddModelError("", "Bir resim seçiniz!");
         }
         if (ModelState.IsValid)
         {
@@ -90,7 +89,93 @@ public class HomeController : Controller
 
         ViewBag.Categories = new SelectList(Repository.Categories, "CategoryId", "Name");
         return View(model);
+    }
+
+    [HttpGet]
+    public IActionResult Edit(int? id)
+    {
+        if (id == null)
+        {
+            return NotFound();
+        }
+
+        var entity = Repository.Products.FirstOrDefault(p => p.ProductId == id);
+        if (entity == null)
+        {
+            return NotFound();
+        }
+        ViewBag.Categories = new SelectList(Repository.Categories, "CategoryId", "Name");
+        return View(entity);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Edit(int id, Product model, IFormFile? imageFile)
+    {
+
+        if (id != model.ProductId)
+        {
+            return NotFound();
+        }
+
+        var allowenExtensions = new[] { ".jpg", ".png", ".jpeg" };
+
+        if (imageFile != null)
+        {
+            var extension = Path.GetExtension(imageFile.FileName).ToLowerInvariant();
+            if (!allowenExtensions.Contains(extension))
+            {
+                ModelState.AddModelError("", "Geçerli bir resim türü seçiniz.");
+            }
+            else
+            {
+                var randomFileName = string.Format($"{Guid.NewGuid().ToString()}{extension}");
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img", randomFileName);
+                try
+                {
+                    using (var stream = new FileStream(path, FileMode.Create))
+                    {
+                        await imageFile.CopyToAsync(stream);
+                    }
+                    model.Image = randomFileName;
+                }
+                catch
+                {
+                    ModelState.AddModelError("", "Dosya yüklenirken bir hata oluştu!");
+                }
+            }
+        }
+        else
+        {
+            ModelState.AddModelError("", "Bir resim seçiniz!");
+        }
+        if (ModelState.IsValid)
+        {
+            Repository.EditProduct(model);
+            return RedirectToAction("index");
+        }
+
+        ViewBag.Categories = new SelectList(Repository.Categories, "CategoryId", "Name");
+        return View(model);
 
     }
 
+    public IActionResult Delete(int? id)
+    {
+        if (id == null)
+        {
+            return NotFound();
+        }
+        var entity = Repository.Products.FirstOrDefault(p => p.ProductId == id);
+        if (entity == null)
+        {
+            return NotFound();
+        }
+        Repository.DeleteProduct(entity);
+        return RedirectToAction("index");
+    }
+
+    public IActionResult ETicaret()
+    {
+        return View();
+    }
 }
